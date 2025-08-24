@@ -19,6 +19,17 @@ type Tree = {
 };
 
 function buildRouteTree(dir: string, basePath = ''): Tree {
+	// Check if directory exists before reading
+	if (!statSync(dir, { throwIfNoEntry: false })?.isDirectory?.()) {
+		return {
+			path: basePath,
+			children: [],
+			hasPage: false,
+			isParam: false,
+			isCatchAll: false,
+			paramName: '',
+		};
+	}
 	const files = readdirSync(dir);
 	const node: Tree = {
 		path: basePath,
@@ -54,7 +65,7 @@ function buildRouteTree(dir: string, basePath = ''): Tree {
 			node.children.push(childNode);
 		} else if (file === 'page.jsx') {
 			node.hasPage = true;
-    }
+		}
 	}
 
 	return node;
