@@ -14,6 +14,10 @@ import { restart } from './plugins/restart';
 import { restartEnvFileChange } from './plugins/restartEnvFileChange';
 
 export default defineConfig({
+  build: {
+    target: 'es2022',
+    outDir: 'dist',
+  },
   // Keep them available via import.meta.env.NEXT_PUBLIC_*
   envPrefix: 'NEXT_PUBLIC_',
   optimizeDeps: {
