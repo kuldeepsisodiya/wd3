@@ -1,4 +1,4 @@
-import { getToken } from '@auth/core/jwt';
+import { getToken } from "next-auth/jwt";
 export async function GET(request) {
 	const [token, jwt] = await Promise.all([
 		getToken({
